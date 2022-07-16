@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import * as userService from "../services/userService.js"
 import * as userRepositories from "../repositories/userRepositories.js"
+
 export async function singUp(req: Request, res: Response) {
     const user:userService.CreateUserData = req.body;
     await userService.signUp(user);

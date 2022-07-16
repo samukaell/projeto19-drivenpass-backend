@@ -15,6 +15,7 @@ model User {
   email String @unique
   password String
   Sesson Session[]
+  Site Site[]
 }
 
 model Session {
@@ -23,3 +24,21 @@ model Session {
   token String
   user User @relation(fields: [userId],references: [id])
 }
+
+model Site{
+  id Int @id @default(autoincrement())
+  title String
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  Credentials Credentials[] 
+}
+
+model Credentials{
+  id Int @id @default(autoincrement())
+  url String
+  name String
+  password String
+  siteId Int
+  Site Site @relation(fields: [siteId],references: [id])
+}
+

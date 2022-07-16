@@ -15,8 +15,18 @@ async function findSessonByUserId(id: number) {
         },
     });
 }
+async function findSessonToken(token: string) {
+    return await prisma.session.findFirst({
+        where: {
+            token:{
+                equals:token
+            }
+        },
+    });
+}
 
 export {
     createSession,
-    findSessonByUserId
+    findSessonByUserId,
+    findSessonToken
 };
