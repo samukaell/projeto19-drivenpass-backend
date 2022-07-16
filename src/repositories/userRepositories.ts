@@ -3,7 +3,11 @@ import { CreateUserData } from "../services/userService.js";
 
 async function findUserByEmail(email: string) {
     return await prisma.user.findFirst({
-        where: {email},
+        where: {
+            email:{
+                equals:email
+            }
+        },
     });
 }
 
