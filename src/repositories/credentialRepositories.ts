@@ -22,6 +22,15 @@ async function findSiteByTitle(title: string) {
         },
     });
 }
+async function findSiteById(id: number) {
+    return await prisma.site.findFirst({
+        where: {
+            id:{
+                equals:id
+            }
+        },
+    });
+}
 
 async function findCredentialsByName(name: string) {
     return await prisma.credentials.findFirst({
@@ -33,9 +42,22 @@ async function findCredentialsByName(name: string) {
     });
 }
 
+async function findCredentialsAllBySiteId(id: number) {
+    return await prisma.site.findFirst({
+        where: {
+            id:{
+                equals:id
+            }
+        },
+        include:{Credentials:true}
+    });
+}
+
 export {
     createSite,
     addCredentialSite,
     findSiteByTitle,
-    findCredentialsByName
+    findSiteById,
+    findCredentialsByName,
+    findCredentialsAllBySiteId
 };

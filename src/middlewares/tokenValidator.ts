@@ -13,9 +13,9 @@ export default async function tokenValidator(req: Request, res: Response, next: 
 		return res.status(406).send('Token was not accepted.');
 	}	
 
-	const decode:string = jwt.verify(tokenUser.token, process.env.TOKENKEY);
+	const decode = jwt.verify(tokenUser.token, process.env.TOKENKEY);
 	res.locals.userId = tokenUser.userId;
-	res.locals.user = decode
+	res.locals.user = decode.user
 
 
 	next()

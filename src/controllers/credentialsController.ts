@@ -13,7 +13,9 @@ export async function  createCredentials(req: Request, res: Response) {
 }
 
 export async function findCredentials(req: Request, res: Response) {
-    const {id} = req.body;
-    console.log("Ok com o id:",id);
-    res.sendStatus(200);
+    const {id} = req.body;//id do site
+    const userId = res.locals.userId;
+    const credentials = await credentialService.find(id,userId);
+
+    res.status(200).send(credentials);
 }
